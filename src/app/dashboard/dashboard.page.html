@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container mt-5">
+    <div id="errors" class="row" *ngIf="error != ''">
+      <div class="col-12 col-md-12">
+        <div class="alert alert-danger">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header text-primary">Listado de Usuarios</div>
+          <div class="card-body card-table">
+            <div class="table-responsive" *ngIf="users.length > 0">
+              <table class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th class="text-center" style="width:15%">Rut</th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center" style="width:30%">Correo</th>
+                    <th class="text-center" style="width:15%">Teléfono</th>
+                    <th class="text-center" style="width:10%">Confirmado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of users">
+                    <td class="text-center">{{ user.rut }}</td>
+                    <td class="text-center">{{ user.name }}</td>
+                    <td class="text-center">{{ user.email }}</td>
+                    <td class="text-center">{{ user.phone }}</td>
+                    <td class="text-center">
+                      <span *ngIf="user.confirmed == 1" class="text-success">SI</span>
+                      <span *ngIf="user.confirmed != 1" class="text-danger">NO</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h5 class="text-center" *ngIf="users.length == 0">
+              No existen registros
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
